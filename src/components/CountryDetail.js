@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { BsArrowLeft } from 'react-icons/bs'
 import '../index.css'
+import { useTheme } from "../context/ThemeContext";
 
 
 function CountryDetail() {
@@ -10,6 +11,10 @@ function CountryDetail() {
     const [country, setCountry] = useState(null);
     const [borderCountries, setBorderCountries] = useState([]);
     const navigate = useNavigate()
+    const { theme, toggleTheme } = useTheme()
+    const styles = theme ? 'dark' : 'light';
+    const stylesHalfDark = theme ? 'half_dark' : 'light';
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,7 +44,7 @@ function CountryDetail() {
     }, [country]);
 
 
-    console.log(country);
+
 
     if (!country) {
         return <div>Loading...</div>;
@@ -47,40 +52,18 @@ function CountryDetail() {
 
     let borderContent;//for border
 
-    // if (Array.isArray(borderCountries)) {
-    //     borderContent = (
-    //         <div className="detail_borders_wrapper">
-    //             <h4>Border Countries:</h4>
-    //             {borderCountries.map((border, index) => {
-    //                 return <Link to={`/country/${border}`} key={index} className="detail_borders">{border}</Link>
-    //             })}
-    //         </div>)
-    // } else if (typeof country.borders === 'object') {
-    //     borderContent = (
-    //         <div className="detail_borders_wrapper">
-    //             <h4>Border Countries: </h4>
-    //             {Object.keys(borderCountries).map((border, index) => {
-    //                 return <Link to={`/country/${border}`} key={index} className="detail_borders">{border}</Link>
-    //             })}
-    //         </div>
-    //     )
-    // } else {
-    //     borderContent = <div>
-    //         <p>No border information available</p>
-    //     </div>
-    // }
     if (Array.isArray(borderCountries) && borderCountries.length > 0) {
         borderContent = (
-            <div className="detail_borders_wrapper">
+            <div className='detail_borders_wrapper'>
                 <h4>Border Countries:</h4>
                 {borderCountries.map((border, index) => {
-                    return <Link to={`/country/${border}`} key={index} className="detail_borders">{border}</Link>
+                    return <Link to={`/country/${border}`} key={index} className={`detail_borders ${stylesHalfDark}`}>{border}</Link>
                 })}
             </div>
         );
     } else {
         borderContent = (
-            <div className="detail_borders_wrapper">
+            <div className={`detail_borders_wrapper ${stylesHalfDark}`}>
                 <p>No borders available</p>
             </div>
         );
@@ -97,9 +80,11 @@ function CountryDetail() {
         langugeSpoken.push(value)
     });
 
+
+
     return (
-        <div className="container">
-            <button onClick={() => navigate(-1)} className="back_btn"><BsArrowLeft size={20} /> Back</button>
+        <div className={`container ${styles}`}>
+            <button onClick={() => navigate(-1)} className={`back_btn ${stylesHalfDark}`}><BsArrowLeft size={20} /> Back</button>
             <div className="details_wrapper">
                 <img src={country.flags.svg} alt={country.flags.alt} className="flag" />
                 <div className="country_details">

@@ -1,14 +1,17 @@
 import axios from "axios";
+import { BsSearch } from 'react-icons/bs'
 import { useEffect, useState } from "react";
 import '../index.css'
 import search from '../images/search.png'
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 
 function Countries() {
     const [data, setData] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('')
     const [inputCountry, setInputCountry] = useState('')
+    const { theme, toggleTheme } = useTheme()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,13 +48,19 @@ function Countries() {
         return filteredData;
     }
 
+    const styles = theme ? 'half_dark' : 'light';
+    const stylesDark = theme ? 'dark' : 'light'
+
+
     return (
-        <div className="container">
-            <div className="search_bar">
-                <img src={search} alt="search glass" />
-                <input type="text" placeholder="Search for a country ..." onChange={handleInputCountryChange} />
+        <div className={`container `}>
+            <div className="search_bar_wrapper">
+                <div className="search_bar">
+                    <BsSearch />
+                    <input type="text" placeholder="Search for a country ..." onChange={handleInputCountryChange} className={styles} />
+                </div>
                 <div>
-                    <select name="region" id="region" className="filter_region" onChange={handleRegionChange}>
+                    <select name="region" id="region" className={`filter_region ${styles}`} onChange={handleRegionChange}>
                         <option value="">Filter By Region</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">America</option>
@@ -64,10 +73,10 @@ function Countries() {
             <div className="wrapper">
                 {filteredCountries().map((country, index) => {
                     return (
-                        <div className="country" key={index}>
-                            <Link to={`/country/${country.name.common}`}>
+                        <div className={`country ${styles}`} key={index}>
+                            <Link to={`/country/${country.name.common}`} className={`${styles}`}>
                                 <img src={country.flags.png} alt="flag" />
-                                <div className="content">
+                                <div className={`${styles} content`}>
                                     <h3>{country.name.common}</h3>
                                     <div className="population">
                                         <h4>Population: </h4>

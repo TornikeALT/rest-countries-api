@@ -3,6 +3,7 @@ import Countries from "./components/Countries";
 import CountryDetail from "./components/CountryDetail";
 import Mode from "./components/Mode";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from "./context/ThemeContext";
 
 const router = createBrowserRouter([
   {
@@ -21,10 +22,12 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <RouterProvider router={router}>
-      <Mode />
-      <Countries />
-    </RouterProvider>
+    <ThemeProvider>
+      <RouterProvider router={router}>
+        <Mode />
+        <Countries />
+      </RouterProvider>
+    </ThemeProvider>
   )
 }
 
