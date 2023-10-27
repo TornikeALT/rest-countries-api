@@ -191,12 +191,16 @@ main {
 
 .filter_region {
   background-color: white;
-  padding: 15px 30px;
   font-size: 14px;
   border: none;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 170px;
+  padding: 20px 30px 20px 10px;
+  max-width: 200px;
+  cursor: pointer;
 }
+
 
 .moon {
   display: flex;

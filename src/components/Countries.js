@@ -2,7 +2,6 @@ import axios from "axios";
 import { BsSearch } from 'react-icons/bs'
 import { useEffect, useState } from "react";
 import '../index.css'
-import search from '../images/search.png'
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
@@ -26,7 +25,7 @@ function Countries() {
     }, [])
 
     const handleRegionChange = (e) => {
-        const region = e.target.value;
+        const region = e.target.value
         setSelectedRegion(region)
     }
 
@@ -49,8 +48,6 @@ function Countries() {
     }
 
     const styles = theme ? 'half_dark' : 'light';
-    const stylesDark = theme ? 'dark' : 'light'
-
 
     return (
         <div className={`container `}>
