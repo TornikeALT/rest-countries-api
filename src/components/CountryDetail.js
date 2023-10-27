@@ -19,7 +19,7 @@ function CountryDetail() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://restcountries.com/v3.1/name/${countryName}`);
+                const response = await axios.get(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
                 setCountry(response.data[0]);
             } catch (error) {
                 console.log(error.message);
@@ -81,7 +81,7 @@ function CountryDetail() {
     });
 
 
-
+    console.log(country);
     return (
         <div className={`container ${styles}`}>
             <button onClick={() => navigate(-1)} className={`back_btn ${stylesHalfDark}`}><BsArrowLeft size={20} /> Back</button>
