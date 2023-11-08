@@ -84,7 +84,7 @@ function Countries() {
                                         <span>{country.region}</span>
                                     </div>
                                     <div className="capital">
-                                        <h4>Country: </h4>
+                                        <h4>Capital: </h4>
                                         <span>{country.capital}</span>
                                     </div>
                                 </div>
